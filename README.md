@@ -2,38 +2,13 @@
 
 > **ETHOnline 2026 — Continuity Track**
 
-**POP** is the continuation of **PolyPOP**.
-
-PolyPOP turns live disagreement into prediction markets on X.
-
-When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag `@_PolyPOP` to deploy an onchain prediction market directly from the conversation.
-
-For ETHOnline 2026, we extend that idea deeper into the market itself.
-
-The main upgrade is a new **AMM-based prediction market architecture** with continuous YES / NO trading, LP liquidity, live probability discovery, and adaptive fee logic during information shocks.
-
-
-
-# POP (ex PolyPOP)
-
-> **ETHOnline 2026 — Continuity Track**
-
 **POP is a Uniswap-like prediction market on Arc, using native USDC and powered by Chainlink CRE.**
 
-It enables continuous YES / NO trading, LP liquidity, live probability discovery, and adaptive fee logic during information shocks.
+It enables continuous YES / NO trading, LP liquidity, live probability discovery, and adaptive fee logic during information shocks. POP uses USDC as collateral, Uniswap for liquidity infrastructure, and Chainlink CRE for market resolution.
 
-POP uses USDC as collateral, Uniswap for liquidity infrastructure, and Chainlink CRE for market resolution.
+POP is the continuation of **PolyPOP**, originally built as a social-to-market prediction product. PolyPOP turns live disagreement into prediction markets on X. When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag `@_PolyPOP` to deploy an onchain prediction market directly from the conversation.
 
-POP is the continuation of **PolyPOP**, originally built as a social-to-market prediction product.
-
-PolyPOP turns live disagreement into prediction markets on X. When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag `@_PolyPOP` to deploy an onchain prediction market directly from the conversation.
-
-For ETHOnline 2026, we extend that idea deeper into the trading experience.
-
-The main upgrade is the transition from a pooled binary prediction market to a **continuously tradable AMM architecture**.
-
-> **PolyPOP made prediction markets easier to create.**  
-> **POP makes them easier to trade with continuous AMM liquidity.**
+For ETHOnline 2026, we extend that idea deeper into the trading experience. The main upgrade is the transition from a pooled binary prediction market to a **continuously tradable AMM architecture**. PolyPOP made prediction markets easier to create. POP makes them easier to trade with continuous AMM liquidity.
 
 
 
