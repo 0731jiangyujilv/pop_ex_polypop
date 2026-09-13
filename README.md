@@ -183,33 +183,5 @@ A **Chainlink CRE workflow** verifies the outcome and writes the result onchain.
 If a user wins a large amount, or if protocol revenue grows, the payout enters a **privacy-preserving settlement lane** instead of exposing the full value flow publicly.
 
 
----
 
-## Uniswap Integration
-
-Uniswap is used in **two distinct ways** inside PolyPOP.
-
-### A. Base-side asset conversion
-
-If a user wants to join a market but only holds **ETH on Base**, PolyPOP uses Uniswap to convert it into **USDC on Base** before the user enters Arc. This makes Uniswap a real part of the entry flow rather than a cosmetic add-on.
-
-PolyPOP uses Uniswap for:
-- **quote generation** for ETH → USDC
-- **approval / execution preparation**
-- **swap transaction construction and execution**
-
-Uniswap handles the swap on Base. Bridge Kit + CCTP handles the movement of USDC into Arc. Uniswap does **not** bridge funds into Arc.
-
-### B. Cold-start counterparty logic
-
-PolyPOP is designed for live disagreement, which means the first user may arrive before the other side exists. **Uniswap v4 hooks** are used to handle this case by customizing the position lifecycle and counterparty logic.
-
-When a user opens a position before the betting window closes:
-
-1. the protocol temporarily seeds the opposite side
-2. real counterparties can still enter during the open window and take the other side
-3. if a real counterparty arrives, the protocol-seeded position is reduced, replaced, or swapped out
-4. if the window closes without a real counterparty, the protocol remains the final counterparty
-
-This makes the market usable from the very first interaction.
 
