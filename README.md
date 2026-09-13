@@ -2,7 +2,7 @@
 
 > **ETHOnline 2026 — Continuity Track**
 
-**POP is a Uniswap-like prediction market on Arc, using native USDC and powered by Chainlink CRE.**
+**POP is a Uniswap-like AMM prediction market on Arc, using native USDC and powered by Chainlink CRE.**
 
 It enables continuous YES / NO trading, LP liquidity, live probability discovery, and adaptive fee logic during information shocks. POP uses USDC as collateral, Uniswap for liquidity infrastructure, and Chainlink CRE for market resolution.
 
@@ -39,12 +39,10 @@ The main upgrade is the transition from a pooled binary market into a continuous
 ### New in POP
 
 - AMM-based YES / NO markets
-- continuous buy and sell
 - LP liquidity
 - live probability discovery
-- fully collateralized outcome positions
-- Uniswap v4 prediction-market Hook
-- OddsShift conditional fee-rebate mechanism
+- fully USDC collateralized outcome positions
+- Uniswap v4 Hook for conditional fee-rebate mechanism
 - adaptive liquidity during information shocks
 - new AMM frontend
 
@@ -64,16 +62,13 @@ The previous implementation remains in the repository as the continuity base.
 ![Design](./images/pop_architecture.svg)
 
 
-## Architecture Overview
 
-```
-X Conversation → @populab_xyz → Uniswap Routing → Arc App-Kit → Arc Prediction Market → Chainlink Settlement → Privacy Treasury
-```
 
 ## Arc App-Kit Integration
 
 The Arc App-Kit provides the following features:
 - Market creation and management
+- USDC collateral
 - Liquidity provision
 - Settlement logic
 - Cross-chain support
@@ -81,7 +76,7 @@ The Arc App-Kit provides the following features:
 
 ## Uniswap Integration
 
-- Uniswap provides API routing and trading API on eth mainnet
+- Uniswap provides API routing and Uniswap v4 Hook
 
 ## Chainlink Integration
 
@@ -90,6 +85,7 @@ The Arc App-Kit provides the following features:
 - Compliant private token transfer.
 
 ## Main Files
+
 
 ### Arc App-Kit (Prediction Market / Settlement / Cross-chain)
 
