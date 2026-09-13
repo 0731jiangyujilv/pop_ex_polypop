@@ -1,0 +1,37 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+solc = "0.8.26"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 800
+via_ir = false
+ffi = false
+fs_permissions = [{ access = "read", path = "./out" }]
+
+# v4-core uses transient storage (tstore/tload) — requires cancun.
+# Hook address mining needs deterministic CREATE2; see script/.
+
+[profile.default.fuzz]
+runs = 512
+
+[profile.default.invariant]
+runs = 256
+depth = 32
+fail_on_revert = false
+
+[profile.ci]
+optimizer_runs = 200
+verbosity = 3
+
+[fmt]
+line_length = 100
+tab_width = 4
+bracket_spacing = false
+int_types = "long"
+
+[rpc_endpoints]
+arc_testnet = "${ARC_TESTNET_RPC_URL}"
