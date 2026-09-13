@@ -1,11 +1,11 @@
-# PolyPOP
+# POP (ex polyPOP)
 
 PolyPOP turns live disagreement into prediction markets on X.
 When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag @_PolyPOP to deploy an onchain prediction market directly from the conversation.
 
 ## Links
 
-- X / Twitter: [@_PolyPOP](https://x.com/_PolyPOP)
+- X / Twitter: [@_PolyPOP](https://x.com/populab_xyz)
 - Demo: [ETHGlobal](https://ethglobal.com/showcase/polypop-qjuge)
 
 
