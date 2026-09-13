@@ -60,7 +60,7 @@ The previous implementation remains in the repository as the continuity base.
 
 
 ## Design
-![Design](./images/polypop_architecture.svg)
+![Design](./images/pop_architecture.svg)
 
 
 ## Architecture Overview
