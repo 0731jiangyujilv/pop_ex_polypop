@@ -1,18 +1,18 @@
-# POP (ex polyPOP)
+# POP (ex PolyPOP)
 
 PolyPOP turns live disagreement into prediction markets on X.
 When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag @_PolyPOP to deploy an onchain prediction market directly from the conversation.
 
 ## Links
 
-- X / Twitter: [@_PolyPOP](https://x.com/populab_xyz)
-- Demo: [ETHGlobal](https://ethglobal.com/showcase/polypop-qjuge)
+- X / Twitter: [@populab_xyz](https://x.com/populab_xyz)
+- Demo: [ETHGlobal](https://ethglobal.com/showcase/pop-7xzio)
 
 
-## Dependencies
+## Integration
 
-- Arc: liquidity hub / advanced stablecoin logic / crosschain settlement / app-kit
-- Uniswap: API routing + bootstrap liquidity demo on Base 
+- Arc: USDC, liquidity hub, advanced stablecoin logic, crosschain settlement / app-kit
+- Uniswap: API routing + bootstrap liquidity demo on Base, Uniswap v4 Hook
 - Chainlink: onchain state-changing settlement flow, ACE Engine, compliant private token transfer
 
 
