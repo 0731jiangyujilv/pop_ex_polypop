@@ -1,19 +1,62 @@
 # POP (ex PolyPOP)
 
+> **ETHOnline 2026 — Continuity Track**
+
+POP is the continuation of **PolyPOP**.
+
 PolyPOP turns live disagreement into prediction markets on X.
-When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag @_PolyPOP to deploy an onchain prediction market directly from the conversation.
+
+When users are already arguing, debating with friends, or seeing two clear sides to a question, they can tag `@_PolyPOP` to deploy an onchain prediction market directly from the conversation.
+
+For ETHOnline 2026, we extend that idea deeper into the market itself.
+
+The main upgrade is a new **AMM-based prediction market architecture** with continuous YES / NO trading, LP liquidity, live probability discovery, and adaptive fee logic during information shocks.
 
 ## Links
 
+- Website: [populab](https://populab.xyz/fed)
 - X / Twitter: [@populab_xyz](https://x.com/populab_xyz)
 - Demo: [ETHGlobal](https://ethglobal.com/showcase/pop-7xzio)
 
 
+---
+
+
+
 ## Integration
 
-- Arc: USDC, liquidity hub, advanced stablecoin logic, crosschain settlement / app-kit
-- Uniswap: API routing + bootstrap liquidity demo on Base, Uniswap v4 Hook
-- Chainlink: onchain state-changing settlement flow, ACE Engine, compliant private token transfer
+- **Arc**: USDC, liquidity hub, advanced stablecoin logic, crosschain settlement, app-kit
+- **Uniswap**: Trading API routing + v4 AMM / Hook
+- **Chainlink**: CRE-based external outcome resolution, ACE Engine, compliant private token transfer
+
+
+
+## What's New in ETHOnline 2026
+
+The main upgrade is the transition from a pooled binary market into a continuously tradable AMM.
+
+### New in POP
+
+- AMM-based YES / NO markets
+- continuous buy and sell
+- LP liquidity
+- live probability discovery
+- fully collateralized outcome positions
+- Uniswap v4 prediction-market Hook
+- OddsShift conditional fee-rebate mechanism
+- adaptive liquidity during information shocks
+- new AMM frontend
+
+### New implementation
+
+- [`contracts-v2/`](./contracts-v2/) — POP AMM + Uniswap v4 + OddsShift
+- [`webapp-v2/`](./webapp-v2/) — new AMM frontend
+
+The previous implementation remains in the repository as the continuity base.
+
+---
+
+
 
 
 ## Design
@@ -23,7 +66,7 @@ When users are already arguing, debating with friends, or seeing two clear sides
 ## Architecture Overview
 
 ```
-X Conversation → @_PolyPOP → Uniswap Routing → Arc App-Kit → Arc Market → Chainlink Settlement → Privacy Treasury
+X Conversation → @populab_xyz → Uniswap Routing → Arc App-Kit → Arc Prediction Market → Chainlink Settlement → Privacy Treasury
 ```
 
 ## Arc App-Kit Integration
@@ -85,32 +128,31 @@ The Arc App-Kit provides the following features:
 
 ## One-Line Pitch
 
-**PolyPOP is a social-to-market stablecoin workflow: social disagreement starts on X, Uniswap powers entry routing plus bootstrap liquidity, Arc hosts the market and settlement, and Chainlink resolves and protects sensitive value flows.**
+**POP is an Uniswap-like prediction market on Arc, using native USDC and powered by Chainlink CRE.**
 
 ---
 
 ## The Problem
 
-Predictions already happen in conversations.
+Prediction markets are event-driven, but liquidity is often most fragile when information matters most.
 
-People argue all the time on X about prices, headlines, outcomes, and narratives. But most of those disagreements never become real markets because the user flow is too fragmented:
+Order-book markets depend on active market makers, who can widen spreads, reduce size, or pull quotes during fast moves.
 
-- the market is not created where the conversation happens
-- users may not hold the right asset
-- users may not be on the right chain
-- settlement is often too heavy or too public
-- large payouts and treasury movements expose too much onchain information
+Static pooled prediction markets have another limitation: users cannot continuously enter and exit at a live market price.
 
 ---
 
 ## The Solution
 
-PolyPOP connects four layers into one clean flow:
 
-1. **X as the social trigger** — a tweet, reply, or argument becomes the trigger for a market.
-2. **Arc as the market and settlement layer** — the prediction market is created natively on Arc and settled in USDC.
-3. **Uniswap as the user entry layer** — if the user only has ETH on Base, Uniswap converts it into USDC automatically.
-4. **Chainlink as the resolution and privacy layer** — Chainlink CRE resolves the market, and Chainlink privacy capabilities handle large private payout or treasury flows.
+POP brings the AMM model to prediction markets.
+
+1. **Arc + USDC** provide the collateral and settlement layer.
+2. **AMM liquidity** enables continuous YES / NO trading and price discovery.
+3. **Uniswap** provides both user-entry routing and a v4 architecture for prediction-market liquidity.
+4. **OddsShift Hook** adapts fee economics during information shocks.
+5. **Chainlink CRE** provides external outcome resolution.
+
 
 ---
 
@@ -140,17 +182,6 @@ A **Chainlink CRE workflow** verifies the outcome and writes the result onchain.
 ### Step 8 — Large flows can go private
 If a user wins a large amount, or if protocol revenue grows, the payout enters a **privacy-preserving settlement lane** instead of exposing the full value flow publicly.
 
----
-
-## Why This Design Matters
-
-PolyPOP is not just a prediction market UI.
-
-It is a **stablecoin-native market workflow** that solves three real frictions at once:
-
-- **social friction** — markets should begin where the disagreement already exists
-- **asset friction** — users should not need to already hold USDC
-- **settlement friction** — high-value payouts should not always be fully public
 
 ---
 
