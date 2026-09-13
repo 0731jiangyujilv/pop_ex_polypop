@@ -4,8 +4,8 @@ This repository now contains two CRE workflows:
 
 - `por`
   Legacy proof-of-reserve workflow for stats verification
-- `binary-weather`
-  Hackathon workflow for the Arc binary market `Will crude oil price be higher in 6 hours?`
+- `prediciton market`
+  Hackathon workflow for the AMM prediction market data feed on Arc
 
 ## Binary Weather Workflow
 
@@ -17,7 +17,7 @@ Purpose:
 
 - scan binary markets from the Arc market factory
 - send `lock` reports after the 10 minute betting window closes
-- fetch Cannes weather forecast
+- fetch weather forecast
 - send `resolve(0/1)` reports after the market duration elapses
 
 Docs:
