@@ -11,7 +11,7 @@ This repository now contains two CRE workflows:
 
 Path:
 
-- [cre-workflow/binary-weather/main.ts](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/binary-weather/main.ts)
+- [cre-workflow/pop-resolution/main.ts](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution/main.ts)
 
 Purpose:
 
@@ -22,7 +22,7 @@ Purpose:
 
 Docs:
 
-- [cre-workflow/binary-weather/README.md](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/binary-weather/README.md)
+- [cre-workflow/pop-resolution/README.md](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution/README.md)
 
 ## Important notes
 

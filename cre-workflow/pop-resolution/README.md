@@ -25,7 +25,7 @@ The workflow currently uses `Open-Meteo` and maps:
 
 ## Config
 
-Edit [config.staging.json](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/binary-weather/config.staging.json):
+Edit [config.staging.json](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution/config.staging.json):
 
 - `schedule`
 - `weatherApiUrl`
@@ -37,21 +37,21 @@ Edit [config.staging.json](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop
 ## Simulate
 
 ```bash
-cd /Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/binary-weather
+cd /Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution
 npm install
-cre workflow simulate binary-weather --target staging-settings
+cre workflow simulate pop-resolution --target staging-settings
 ```
 
 ## Broadcast
 
 ```bash
-cre workflow simulate binary-weather --target staging-settings --broadcast
+cre workflow simulate pop-resolution --target staging-settings --broadcast
 ```
 
 ## Deploy
 
 ```bash
-cre workflow deploy binary-weather --target staging-settings
+cre workflow deploy pop-resolution --target staging-settings
 ```
 
 ## Contract expectation

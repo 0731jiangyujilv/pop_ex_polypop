@@ -114,8 +114,8 @@ The Arc App-Kit provides the following features:
 - [`webapp/src/pages/SwapPage.tsx`](./webapp/src/pages/SwapPage.tsx) — swap page
 
 ### Chainlink (CRE Workflow / ACE Engine / Compliant Private Transfer)
-- [`cre-workflow/binary-weather/main.ts`](./cre-workflow/binary-weather/main.ts) — CRE workflow main logic
-- [`cre-workflow/binary-weather/workflow.yaml`](./cre-workflow/binary-weather/workflow.yaml) — CRE workflow config
+- [`cre-workflow/pop-resolution/main.ts`](./cre-workflow/pop-resolution/main.ts) — CRE workflow main logic
+- [`cre-workflow/pop-resolution/workflow.yaml`](./cre-workflow/pop-resolution/workflow.yaml) — CRE workflow config
 - [`cre-workflow/project.yaml`](./cre-workflow/project.yaml) — CRE project config
 - [`server/src/ace-worker.ts`](./server/src/ace-worker.ts) — ACE Engine worker
 - [`server/src/common/aceApi.ts`](./server/src/common/aceApi.ts) — ACE API (server-side)
