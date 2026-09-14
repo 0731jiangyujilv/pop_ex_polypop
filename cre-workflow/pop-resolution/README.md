@@ -1,72 +1,116 @@
-# Arc Binary Weather CRE Workflow
+# POP Resolution — Chainlink CRE
 
-This workflow locks and resolves the Arc binary prediction market:
+Chainlink CRE is the external resolution layer for POP.
 
-`Will crude oil price be higher in 6 hours?`
+POP's AMM continuously discovers what the market **believes**.  
+Chainlink CRE determines what **actually happened** and writes the final result onchain.
 
-It performs two actions:
+> **AMM discovers probability. Chainlink CRE finalizes the outcome.**
 
-- `lock`
-  After the 10 minute betting window closes, CRE sends a signed report with `action = 0`
-- `resolve`
-  After `startTime + duration`, CRE fetches the weather forecast for Cannes and sends `action = 1` with `outcome = 0 | 1`
+---
 
-The workflow scans markets from the binary market factory, so it can process more than one active Arc weather market in the same run.
+## Workflow
 
-## Outcome rule
+```text
+External Data
+     ↓
+Chainlink CRE
+     ↓
+Read Market State on Arc
+     ↓
+Determine LOCK / RESOLVE
+     ↓
+Signed CRE Report
+     ↓
+Chainlink Forwarder
+     ↓
+POP Market Contract
+     ↓
+Onchain Settlement
+     ↓
+Public Redeem / Private Redeem
+```
 
-- `0 = No`
-- `1 = Yes`
+The workflow uses:
 
-The workflow currently uses `Open-Meteo` and maps:
+- `CronCapability` — monitors active markets
+- `EVMClient` — reads market state on Arc
+- `HTTPClient` — fetches external resolution data
+- `runtime.report()` — creates a signed EVM report
+- `writeReport()` — delivers the report onchain
 
-- `daily.rain_sum[1] > rainThresholdMm` -> `1`
-- otherwise -> `0`
+---
 
-## Config
+## Market Lifecycle
 
-Edit [config.staging.json](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution/config.staging.json):
+CRE can trigger two onchain state transitions:
 
-- `schedule`
-- `weatherApiUrl`
-- `rainThresholdMm`
-- `evms[0].marketFactoryAddress`
-- `evms[0].chainSelectorName`
-- `evms[0].gasLimit`
+```text
+OPEN → LOCKED → RESOLVED
+```
 
-## Simulate
+- **LOCK** — closes trading when the market reaches its deadline
+- **RESOLVE** — determines the final YES / NO outcome using external data
+
+Once resolved, the winning outcome can proceed to USDC settlement.
+
+---
+
+## Private Redeem
+
+After a market is resolved, POP can route eligible payouts through the existing private-redeem flow.
+
+```text
+RESOLVED
+   ↓
+Winning Position
+   ↓
+Private Redeem
+   ↓
+Policy / Privacy Layer
+   ↓
+USDC Payout
+```
+
+This privacy layer comes from the original PolyPOP implementation and remains part of the broader settlement stack.
+
+The core CRE responsibility is still market resolution; private redeem is an optional post-resolution settlement path.
+
+---
+
+## Files
+
+- [`main.ts`](./main.ts) — CRE resolution workflow
+- [`workflow.yaml`](./workflow.yaml) — workflow configuration
+- [`config.staging.json`](./config.staging.json) — Arc testnet config
+- [`config.production.json`](./config.production.json) — production config
+
+Onchain receiver:
+
+- [`../../contracts/src/interfaces/ReceiverTemplate.sol`](../../contracts/src/interfaces/ReceiverTemplate.sol)
+- [`../../contracts/src/BinaryPredictionMarket.sol`](../../contracts/src/BinaryPredictionMarket.sol)
+
+---
+
+## Run
 
 ```bash
-cd /Users/just/workspace/aibkh/chainlink/arc-uni-polypop/cre-workflow/pop-resolution
-npm install
-cre workflow simulate pop-resolution --target staging-settings
+cre workflow simulate . \
+  --target staging-settings
 ```
 
-## Broadcast
+With onchain broadcast:
 
 ```bash
-cre workflow simulate pop-resolution --target staging-settings --broadcast
+cre workflow simulate . \
+  --target staging-settings \
+  --broadcast
 ```
 
-## Deploy
+---
 
-```bash
-cre workflow deploy pop-resolution --target staging-settings
-```
+## Continuity
 
-## Contract expectation
+This CRE settlement workflow was originally built for PolyPOP and remains the trusted external resolution layer as POP evolves toward a continuously tradable AMM.
 
-The receiver contract must support CRE `writeReport()` and decode:
-
-```solidity
-(uint8 action, uint8 outcome)
-```
-
-This repository wires that into:
-
-- [BinaryPredictionMarket.sol](/Users/just/workspace/aibkh/chainlink/arc-uni-polypop/contracts/src/BinaryPredictionMarket.sol)
-
-with:
-
-- `ACTION_LOCK = 0`
-- `ACTION_RESOLVE = 1`
+**Trading evolves. Resolution stays verifiable.**
